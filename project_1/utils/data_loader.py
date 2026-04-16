@@ -41,7 +41,7 @@ def preprocess(df: pd.DataFrame, date_col: str, value_col: str) -> pd.Series:
     결측치가 있으면 선형 보간 후 Streamlit warning 표시.
     """
     data = df[[date_col, value_col]].copy()
-    data[date_col] = pd.to_datetime(data[date_col], infer_datetime_format=True)
+    data[date_col] = pd.to_datetime(data[date_col])
     data = data.sort_values(date_col).reset_index(drop=True)
     data = data.set_index(date_col)
     series = data[value_col].astype(float)
